@@ -7,8 +7,6 @@ const contact = require("./script")
 const nodemailer = require('nodemailer')
 const bodyParser = require('body-parser')
 const session = require('express-session');
-// const flash = require('connect-flash');
-
 
 
 mongo_url = 'mongodb://127.0.0.1:27017/portfolio'
@@ -39,21 +37,9 @@ app.use(session({
   saveUninitialized: false
 }));
 
-// app.use(flash());
-
-// app.use((req, res, next) => {
-//   res.locals.success_msg = req.flash('success_msg');
-//   res.locals.error_msg = req.flash('error_msg');
-//   next();
-// });
-
-
-
 app.get("/", (req, res) => {
     res.render("portfolio/home.ejs");
 })
-
-
 
 app.get("/skills", (req, res) => {
     res.render("portfolio/skills.ejs");
@@ -62,8 +48,6 @@ app.get("/skills", (req, res) => {
 app.get("/education", (req, res) => {
     res.render("portfolio/education.ejs");
 });
-
-// 
 
 app.post("/contact", async (req, res) => {
   const { name, email, message } = req.body;
@@ -103,7 +87,7 @@ app.post("/contact", async (req, res) => {
 });
 
 
-app.listen(8080, () => {
+app.listen(8080, (req, res) => {
     console.log("server is listening")
 });
 
